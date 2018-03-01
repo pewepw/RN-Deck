@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet, 
+  Text, 
+  View 
+} from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Deck from './src/Deck';
 
@@ -23,9 +27,9 @@ export default class App extends React.Component {
         image={{ uri: item.uri }}>
 
         <Text style={{ marginBottom: 10 }}>
-        Hello World!
+        {item.text}
         </Text>
-
+        
         <Button
         icon={{ name: "code" }}
         backgroundColor="blue"
@@ -36,12 +40,26 @@ export default class App extends React.Component {
     );
   }
 
+  renderNoMoreCards() {
+    return (
+      <Card title="All Done!">
+        <Text style={{ marginBottom: 10 }}>
+          There's no more content here!
+        </Text>
+        <Button 
+        backgroundColor="grey"
+        title="Get More!"/>
+      </Card>
+    )
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Deck 
           data={DATA}
-          renderCard={this.renderCard}/>
+          renderCard={this.renderCard}
+          renderNoMoreCards={this.renderNoMoreCards}/>
       </View>
     );
   }
